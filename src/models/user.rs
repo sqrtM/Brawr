@@ -1,13 +1,22 @@
+use std::time::SystemTime;
+
 use crate::schema::users;
 use diesel::prelude::*;
 use rocket::serde::Deserialize;
 
 
-#[derive(Queryable, Insertable, Debug, Deserialize)]
+#[derive(Queryable, Insertable, Deserialize, Debug)]
 #[diesel(table_name = users)]
 pub struct User {
     pub user_id: i32,
     pub email: String,
     pub password: String,
-    pub created_at: Option<chrono::NaiveDateTime>
+    pub created_at: SystemTime
+}
+
+#[derive(Deserialize, Debug)]
+pub struct UserRequest {
+    pub user_id: i32,
+    pub email: String,
+    pub password: String,
 }
