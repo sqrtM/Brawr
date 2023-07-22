@@ -11,6 +11,7 @@ serde = { version = "1.0.171", features = ["derive"] }
 diesel = { version = "2.1.0", features = ["postgres", "chrono"] }
 dotenvy = "0.15"
 chrono = { version = "0.4.26", features = ["serde"] }
+regex = "1.9.1"
 
 
 [dependencies.rocket]

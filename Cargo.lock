@@ -153,6 +153,7 @@ dependencies = [
  "chrono",
  "diesel",
  "dotenvy",
+ "regex",
  "rocket 0.5.0-rc.3",
  "rocket_contrib",
  "serde",
