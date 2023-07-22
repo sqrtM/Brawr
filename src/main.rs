@@ -11,7 +11,7 @@ use crate::services::pg_connection::establish_connection_pg;
 #[macro_use]
 extern crate rocket;
 
-#[post("/ffff", format = "json", data = "<user>")]
+#[post("/add-user", format = "json", data = "<user>")]
 fn add_user(user: Json<User>) -> String {
     let new_user = User {
         user_id: user.user_id,
@@ -29,5 +29,5 @@ fn add_user(user: Json<User>) -> String {
 
 #[launch]
 fn rocket() -> Rocket<Build> {
-    rocket::build().mount("/", routes![add_user])
+    rocket::build().mount("/api", routes![add_user])
 }
