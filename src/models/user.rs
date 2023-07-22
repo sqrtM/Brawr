@@ -14,9 +14,9 @@ pub struct User {
     pub created_at: SystemTime
 }
 
-#[derive(Deserialize, Debug)]
+#[derive(Insertable, Deserialize, Debug)]
+#[diesel(table_name = users)]
 pub struct UserRequest {
-    pub user_id: i32,
     pub email: String,
     pub password: String,
 }
