@@ -11,10 +11,14 @@ use crate::{
 
 pub fn execute(id: i32) -> Result<UserResponse, Error> {
     let conn: &mut diesel::PgConnection = &mut establish_connection_pg();
-    let selected_user: User = users::table.filter(user_id.eq(id)).first::<User>(conn)?;
-    let user_characters: Vec<Character> = Character::belonging_to(&selected_user).load::<Character>(conn)?;
-    Ok(UserResponse {
-        user: selected_user,
-        characters: user_characters,
-    })
+    match users::table.filter(user_id.eq(id)).first::<User>(conn) {
+        Ok(selected_user) => { 
+            let user_characters = Character::belonging_to(&selected_user).load::<Character>(conn)?;
+            Ok(UserResponse {
+                user: selected_user,
+                characters: user_characters,
+            })
+        },
+        Err(e) => Err(e)
+    }
 }

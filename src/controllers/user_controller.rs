@@ -16,7 +16,7 @@ pub fn add_user(request: Json<UserRequest>) -> String {
     }
     match add_user_service::execute(request) {
         Ok(e) => format!("{:#?}", e),
-        Err(_) => "error!!!!".to_owned(),
+        Err(e) => e.to_string(),
     }
 }
 
@@ -24,7 +24,7 @@ pub fn add_user(request: Json<UserRequest>) -> String {
 pub fn get_users() -> String {
     match get_users_service::execute() {
         Ok(users) => format!("{:#?}", users),
-        Err(_) => "error!!!!".to_owned(),
+        Err(e) => e.to_string(),
     }
 }
 
@@ -32,6 +32,6 @@ pub fn get_users() -> String {
 pub fn get_user_by_id(id: i32) -> String {
     match get_user_by_id_service::execute(id) {
         Ok(user) => format!("{:#?}", user),
-        Err(_) => "error!!!!".to_owned(),
+        Err(e) => e.to_string(),
     }
 }
