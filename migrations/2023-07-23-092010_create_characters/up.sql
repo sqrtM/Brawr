@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS characters (
+  character_id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  character_name VARCHAR(70) NOT NULL,
+  constitution INTEGER NOT NULL,
+  strength INTEGER NOT NULL,
+  madness INTEGER NOT NULL,
+  intelligence INTEGER NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
