@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 #[derive(Debug)]
 #[allow(dead_code)]
 pub enum HttpErrorCode {
