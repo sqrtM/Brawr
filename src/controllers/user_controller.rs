@@ -13,8 +13,8 @@ use crate::{
 
 #[post("/", data = "<request>")]
 pub fn add_user(
-    request: Json<UserRequest>,
-) -> Result<Accepted<Json<Vec<User>>>, BadRequest<Json<String>>> {
+    request: Json<UserRequest>
+) -> Result<Accepted<Json<String>>, BadRequest<Json<String>>> {
     if !UserRequest::is_valid(&request) {
         let json: Option<Json<String>> =
             Some(Json("Error: Email or Password are invalid".to_string()));
@@ -22,11 +22,11 @@ pub fn add_user(
     }
     match add_user_service::execute(request) {
         Ok(users) => {
-            let json: Option<Json<Vec<User>>> = Some(Json(users));
+            let json = Some(Json(users));
             Ok(Accepted(json))
         }
         Err(e) => {
-            let json: Option<Json<String>> = Some(Json(format!("Error: {}", e.to_string())));
+            let json = Some(Json(format!("Error: {}", e.to_string())));
             Err(BadRequest(json))
         }
     }

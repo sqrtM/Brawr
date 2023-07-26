@@ -1,0 +1,2 @@
+ALTER TABLE sessions
+DROP CONSTRAINT fk_sessions_user_id_to_user_id;

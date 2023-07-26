@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS sessions (
+  session_id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL,
+  expires_at TIMESTAMP NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  secret CHAR(64)
+);

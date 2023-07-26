@@ -12,6 +12,7 @@ diesel = { version = "2.1.0", features = ["postgres", "chrono"] }
 dotenvy = "0.15"
 chrono = { version = "0.4.26", features = ["serde"] }
 regex = "1.9.1"
+sha256 = "1.2.2"
 
 
 [dependencies.rocket]
