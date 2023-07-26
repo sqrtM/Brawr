@@ -21,7 +21,7 @@ diesel::table! {
         expires_at -> Timestamp,
         created_at -> Timestamp,
         #[max_length = 64]
-        secret -> Nullable<Bpchar>,
+        secret -> Bpchar,
     }
 }
 

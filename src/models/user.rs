@@ -44,3 +44,11 @@ pub struct UserResponse {
     pub user: User,
     pub characters: Vec<Character>,
 }
+
+
+#[derive(Serialize)]
+#[derive(Debug)]
+pub struct UserResponseWithSecret {
+    pub user: Vec<User>,
+    pub secret: String
+}

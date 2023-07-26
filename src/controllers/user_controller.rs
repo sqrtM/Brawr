@@ -4,7 +4,7 @@ use rocket::{
 };
 
 use crate::{
-    models::user::{User, UserRequest, UserResponse},
+    models::user::{User, UserRequest, UserResponse, UserResponseWithSecret},
     services::user::{
         add_user as add_user_service, get_user_by_id as get_user_by_id_service,
         get_users as get_users_service,
@@ -14,7 +14,7 @@ use crate::{
 #[post("/", data = "<request>")]
 pub fn add_user(
     request: Json<UserRequest>
-) -> Result<Accepted<Json<String>>, BadRequest<Json<String>>> {
+) -> Result<Accepted<Json<UserResponseWithSecret>>, BadRequest<Json<String>>> {
     if !UserRequest::is_valid(&request) {
         let json: Option<Json<String>> =
             Some(Json("Error: Email or Password are invalid".to_string()));
@@ -22,11 +22,11 @@ pub fn add_user(
     }
     match add_user_service::execute(request) {
         Ok(users) => {
-            let json = Some(Json(users));
+            let json: Option<Json<UserResponseWithSecret>> = Some(Json(users));
             Ok(Accepted(json))
         }
         Err(e) => {
-            let json = Some(Json(format!("Error: {}", e.to_string())));
+            let json: Option<Json<String>> = Some(Json(e));
             Err(BadRequest(json))
         }
     }
